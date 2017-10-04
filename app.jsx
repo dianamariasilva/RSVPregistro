@@ -10,7 +10,6 @@
        this.render = render;
     }
     inform() {
-       console.log(this.guests.map(e => e.text));
        this.render();
     }
     addGuest(text) {
@@ -30,11 +29,11 @@
        this.inform();
     }
     changeClass(e) {
-      console.log(e.parentNode);
+      console.log(e.parentNode.className);
         if (e.parentNode.className == "") {
-              e.parentNode.className = 'responded';
+              e.parentNode.className = "responded";
         } else {
-              e.className = '';
+              e.parentNode.className = "";
         }
     }
  }
@@ -70,7 +69,7 @@
                         model.addGuest(model.inputValue);
                         }}
                   >
-                        <input onChange={e => (model.inputValue = e.target.value)} placeholder="Invite Someone" />
+                        <input onChange={e => (model.inputValue = e.target.value)} placeholder="Invite Someone"/>
                         <button type="submit">Submit</button>
                   </form>
             </header>
@@ -83,9 +82,7 @@
  };
 
  let model = new Model();
- let counter = 1;
  let render = () => {
-    console.log('render times: ', counter++);
     ReactDOM.render(
        <App title="RSVP" model={model} />,
        document.getElementById('container')
