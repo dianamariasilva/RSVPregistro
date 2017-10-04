@@ -134,7 +134,7 @@
        );
     });
     return (
-       <div>
+       <div className="wrapper">
             <header>
                   <h1> {title} </h1>
                   <p> Registration App </p>
@@ -144,11 +144,14 @@
                         model.addTodo(model.inputValue);
                         }}
                   >
-                        <input onChange={e => (model.inputValue = e.target.value)} />
-                        <button type="submit">Add Item</button>
+                        <input onChange={e => (model.inputValue = e.target.value)} placeholder="Invite Someone" />
+                        <button type="submit">Submit</button>
                   </form>
             </header>
-          <ol> {items} </ol>
+            <div class="main">	
+                  <h2>Invitees</h2>
+                  <ul id="invitedList">{items}</ul>	
+            </div>
        </div>
     );
  };
