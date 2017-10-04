@@ -1,87 +1,3 @@
-
-// class Model {
-
-//    constructor () {
-//       this.todos = [];
-//       this.inputValue = null;
-//       this.render = undefined;
-//    }
-  
-//    subscribe(render) {
-//       this.render = render;
-//    }
-//    inform() {
-//       console.log(this.todos.map(e => e.text));
-//       this.render();
-//    }
-//    addTodo(text) {
-//       this.todos.push({
-//          id: Utils.uuid(), // local storage
-//          text: text,     // el texto que pongo
-//          completed: false  //estado 
-//       });
-//       this.inform();
-//    }
-//    updateGuessList(index, todo) {
-//       this.todos[index] = todo;
-//       this.inform();
-//    }
-//    removeTodo(todo) {
-//       this.todos = this.todos.filter(item => item !== todo);
-//       this.inform();
-//    }
-// }
-
-// const App = ({ title, model }) => {
-//    const items = model.todos.map((todo, index) => {
-//       return (
-//          <li key={todo.id}>
-//             <input
-//                type="text"
-//                value={todo.text}
-//                onChange={e =>
-//                   model.updateGuessList(index, {
-//                      id: todo.id,
-//                      text: e.target.value,
-//                      completed: todo.completed
-//                   })}
-//             />
-//             <button onClick={() => model.removeTodo(todo)}> delete item</button>
-//          </li>
-//       );
-//    });
-//    return (
-//       <div>
-//          <h1> {title} </h1>
-//          <form
-//             onSubmit={e => {
-//                e.preventDefault();
-//                model.addTodo(model.inputValue);
-//             }}
-//          >
-//             <input onChange={e => (model.inputValue = e.target.value)} />
-//             <button type="submit">Add Item</button>
-//          </form>
-//          <ol> {items} </ol>
-//       </div>
-//    );
-// };
-
-// let model = new Model();
-// let counter = 1;
-// let render = () => {
-//    console.log('render times: ', counter++);
-//    ReactDOM.render(
-//       <App title="TodoApp" model={model} />,
-//       document.getElementById('container')
-//    );
-// };
-// //view etiqueta, model propiedad
-
-// model.subscribe(render);
-// render(); 
-
-
  class Model {
 
     constructor () {
@@ -97,7 +13,7 @@
        console.log(this.guests.map(e => e.text));
        this.render();
     }
-    addTodo(text) {
+    addGuest(text) {
        this.guests.push({
           id: Utils.uuid(), // local storage
           text: text,     // el texto que pongo
@@ -112,6 +28,14 @@
     removeTodo(todo) {
        this.guests = this.guests.filter(item => item !== todo);
        this.inform();
+    }
+    changeClass(e) {
+      console.log(e.parentNode);
+        if (e.parentNode.className == "") {
+              e.parentNode.className = 'responded';
+        } else {
+              e.className = '';
+        }
     }
  }
 
@@ -129,7 +53,8 @@
                       completed: todo.completed
                    })}
              />
-             <input placeholder="Confirmed" type="checkbox" id="myCheck" name="Confirmed"/>
+             <label htmlFor="">Confirmed</label>
+             <input type="checkbox" id="myCheck" name="Confirmed" onChange={e=>model.changeClass(e.target)}/>
              <button onClick={() => model.removeTodo(todo)}> Remove</button>
           </li>
        );
@@ -142,7 +67,7 @@
                   <form
                         onSubmit={e => {
                         e.preventDefault();
-                        model.addTodo(model.inputValue);
+                        model.addGuest(model.inputValue);
                         }}
                   >
                         <input onChange={e => (model.inputValue = e.target.value)} placeholder="Invite Someone" />
