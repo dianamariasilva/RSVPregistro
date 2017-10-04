@@ -22,7 +22,7 @@
 //       });
 //       this.inform();
 //    }
-//    updateTodo(index, todo) {
+//    updateGuessList(index, todo) {
 //       this.todos[index] = todo;
 //       this.inform();
 //    }
@@ -40,7 +40,7 @@
 //                type="text"
 //                value={todo.text}
 //                onChange={e =>
-//                   model.updateTodo(index, {
+//                   model.updateGuessList(index, {
 //                      id: todo.id,
 //                      text: e.target.value,
 //                      completed: todo.completed
@@ -105,7 +105,7 @@
        });
        this.inform();
     }
-    updateTodo(index, todo) {
+    updateGuessList(index, todo) {
        this.guests[index] = todo;
        this.inform();
     }
@@ -123,13 +123,14 @@
                 type="text"
                 value={todo.text}
                 onChange={e =>
-                   model.updateTodo(index, {
+                   model.updateGuessList(index, {
                       id: todo.id,
                       text: e.target.value,
                       completed: todo.completed
                    })}
              />
-             <button onClick={() => model.removeTodo(todo)}> delete item</button>
+             <input placeholder="Confirmed" type="checkbox" id="myCheck" name="Confirmed"/>
+             <button onClick={() => model.removeTodo(todo)}> Remove</button>
           </li>
        );
     });
